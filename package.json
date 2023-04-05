@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "autoprefixer": "^10",
+    "axios": "^1.3.4",
     "core-js": "^3.8.3",
     "element-plus": "^1.0.2-beta.28",
     "highcharts": "^10.3.3",
