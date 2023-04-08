@@ -19,7 +19,7 @@
     </div>
     <div class="flex-grow px-5 py-4 h-full overflow-y-auto">
         <div id="container"></div>
-      <div id="pieChart"></div>
+        <div id="pieChart"></div>
     </div>
   </div>
   <el-dialog title="История вычислении" v-model="show">
@@ -56,7 +56,7 @@ export default {
   },
   data() {
     return {
-      show: true,
+      show: false,
       form: {
         AbMetres: null,
         reliefStartPoint: null,
@@ -66,179 +66,70 @@ export default {
       }
     }
   },
-  mounted() {
+  async mounted() {
+    await this.getData();
     // Age categories
-    var categories = [
-      '0-4', '5-9', '10-14', '15-19', '20-24', '25-29', '30-34', '35-40', '40-45',
-      '45-49', '50-54', '55-59', '60-64', '65-69', '70-74', '75-79', '80+'
-    ];
-
-    Highcharts.chart('pieChart', {
-      chart: {
-        type: 'bar'
-      },
-      title: {
-        text: 'Population pyramid for Somalia, 2021',
-        align: 'left'
-      },
-      subtitle: {
-        text: 'Source: <a ' +
-            'href="https://countryeconomy.com/demography/population-structure/somalia"' +
-            'target="_blank">countryeconomy.com</a>',
-        align: 'left'
-      },
-      accessibility: {
-        point: {
-          valueDescriptionFormat: '{index}. Age {xDescription}, {value}%.'
-        }
-      },
-      xAxis: [{
-        categories: categories,
-        reversed: false,
-        labels: {
-          step: 1
-        },
-        accessibility: {
-          description: 'Age (male)'
-        }
-      }, { // mirror axis on right side
-        opposite: true,
-        reversed: false,
-        categories: categories,
-        linkedTo: 0,
-        labels: {
-          step: 1
-        },
-        accessibility: {
-          description: 'Age (female)'
-        }
-      }],
-      yAxis: {
-        title: {
-          text: null
-        },
-        labels: {
-          formatter: function () {
-            return Math.abs(this.value) + '%';
-          }
-        },
-        accessibility: {
-          description: 'Percentage population',
-          rangeDescription: 'Range: 0 to 5%'
-        }
-      },
-
-      plotOptions: {
-        series: {
-          stacking: 'normal'
-        }
-      },
-
-      tooltip: {
-        formatter: function () {
-          return '<b>' + this.series.name + ', age ' + this.point.category + '</b><br/>' +
-              'Population: ' + Highcharts.numberFormat(Math.abs(this.point.y), 1) + '%';
-        }
-      },
-
-      series: [{
-        name: 'Male',
-        data: [
-          -8.98, -7.52, -6.65, -5.72, -4.85,
-          -3.71, -2.76, -2.07, -1.70, -1.47,
-          -1.22, -0.99, -0.81, -0.62, -0.41,
-          -0.23, -0.15
-        ]
-      }, {
-        name: 'Female',
-        data: [
-          8.84, 7.42, 6.57, 5.68, 4.83,
-          3.74, 2.80, 2.14, 1.79, 1.59,
-          1.34, 1.06, 0.83, 0.63, 0.43,
-          0.25, 0.19
-        ]
-      }]
-    });
-
-
-    Highcharts.chart('container', {
-      chart: {
-        type: 'column'
-      },
-      title: {
-        text: 'World\'s largest cities per 2021'
-      },
-      subtitle: {
-        text: 'Source: <a href="https://worldpopulationreview.com/world-cities" target="_blank">World Population Review</a>'
-      },
-      xAxis: {
-        type: 'category',
-        labels: {
-          rotation: -45,
-          style: {
-            fontSize: '13px',
-            fontFamily: 'Verdana, sans-serif'
-          }
-        }
-      },
-      yAxis: {
-        min: 0,
-        title: {
-          text: 'Population (millions)'
-        }
-      },
-      legend: {
-        enabled: false
-      },
-      tooltip: {
-        pointFormat: 'Population in 2021: <b>{point.y:.1f} millions</b>'
-      },
-      series: [{
-        name: 'Population',
-        data: [
-          ['Tokyo', 37.33],
-          ['Delhi', 31.18],
-          ['Shanghai', 27.79],
-          ['Sao Paulo', 22.23],
-          ['Mexico City', 21.91],
-          ['Dhaka', 21.74],
-          ['Cairo', 21.32],
-          ['Beijing', 20.89],
-          ['Mumbai', 20.67],
-          ['Osaka', 19.11],
-          ['Karachi', 16.45],
-          ['Chongqing', 16.38],
-          ['Istanbul', 15.41],
-          ['Buenos Aires', 15.25],
-          ['Kolkata', 14.974],
-          ['Kinshasa', 14.970],
-          ['Lagos', 14.86],
-          ['Manila', 14.16],
-          ['Tianjin', 13.79],
-          ['Guangzhou', 13.64]
-        ],
-        dataLabels: {
-          enabled: true,
-          rotation: -90,
-          color: '#FFFFFF',
-          align: 'right',
-          format: '{point.y:.1f}', // one decimal
-          y: 10, // 10 pixels down from the top
-          style: {
-            fontSize: '13px',
-            fontFamily: 'Verdana, sans-serif'
-          }
-        }
-      }]
-    });
-
   },
   methods: {
+    drawCategoryChart(id, data) {
+      Highcharts.chart('container', {
+        chart: {
+          type: 'spline'
+        },
+        title: {
+          text: 'Monthly Average Temperature'
+        },
+        subtitle: {
+          text: 'Source: ' +
+              '<a href="https://en.wikipedia.org/wiki/List_of_cities_by_average_temperature" ' +
+              'target="_blank">Wikipedia.com</a>'
+        },
+        xAxis: {
+          accessibility: {
+            description: 'Months of the year'
+          }
+        },
+        yAxis: {
+          title: {
+            text: 'Temperature'
+          },
+        },
+        tooltip: {
+          crosshairs: true,
+          shared: true
+        },
+        plotOptions: {
+          spline: {
+            marker: {
+              radius: 4,
+              lineColor: '#666666',
+              lineWidth: 1
+            }
+          }
+        },
+        series: data
+      });
+    },
     async calculateResult() {
       let data = await axios.post('http://localhost:3000/calculate', {
         ...this.form
       });
       console.log(data);
+    },
+    async getData() {
+      let {data} = await axios.get('http://localhost:3000/api/get-response');
+      console.log(data);
+      let firstChart = {
+        data: data.XZsurface.data,
+        color: 'red',
+        title: 'XZSurface'
+      };
+      let secondChart = {
+        data: data.electrodes.data,
+        title: 'Electrodes',
+        color: 'blue'
+      }
+      this.drawCategoryChart('', [firstChart, secondChart])
     }
   }
 }
