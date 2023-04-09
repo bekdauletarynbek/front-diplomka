@@ -121,14 +121,14 @@ export default {
     async getData() {
       let {data} = await axios.get('/api/get-response');
       console.log(data);
-      this.xAxis = data.XZsurface.data.map(k=> k[0]);
+      this.xAxis = data.XZsurface.map(k=> k[0]);
       let firstChart = {
-        data: data.XZsurface.data,
+        data: data.XZsurface,
         color: 'red',
         title: 'XZSurface'
       };
       let secondChart = {
-        data: data.electrodes.data,
+        data: data.electrodes,
         title: 'Electrodes',
         color: 'blue'
       }
