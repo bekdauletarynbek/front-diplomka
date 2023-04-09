@@ -13,7 +13,7 @@
         <el-button type="primary" round size="small" plain>Выбрать второй файл для вычисления</el-button>
       </el-upload>
         <div class="mt-3">
-        <el-button type="success" size="small" round>Начать вычисление</el-button>
+        <el-button @click="show=!show" type="success" size="small" round>Начать вычисление</el-button>
         </div>
       </div>
     </div>
@@ -78,22 +78,17 @@ export default {
           type: 'spline'
         },
         title: {
-          text: 'Monthly Average Temperature'
-        },
-        subtitle: {
-          text: 'Source: ' +
-              '<a href="https://en.wikipedia.org/wiki/List_of_cities_by_average_temperature" ' +
-              'target="_blank">Wikipedia.com</a>'
+          text: 'XZsurface + Electrodes График'
         },
         xAxis: {
           accessibility: {
-            description: 'Months of the year'
+            description: 'X'
           },
           categories: this.xAxis,
         },
         yAxis: {
           title: {
-            text: 'Temperature'
+            text: 'Z'
           },
         },
         tooltip: {
@@ -113,7 +108,7 @@ export default {
       });
     },
     async calculateResult() {
-      let data = await axios.post('http://localhost:3000/calculate', {
+      let data = await axios.post('/api/calculate', {
         ...this.form
       });
       console.log(data);
