@@ -63,7 +63,8 @@ export default {
         typeOfModel: null,
         nks: null,
         heightOfWaterAtLeftSide: null,
-      }
+      },
+      xAxis: [],
     }
   },
   async mounted() {
@@ -87,7 +88,8 @@ export default {
         xAxis: {
           accessibility: {
             description: 'Months of the year'
-          }
+          },
+          categories: this.xAxis,
         },
         yAxis: {
           title: {
@@ -119,6 +121,7 @@ export default {
     async getData() {
       let {data} = await axios.get('/api/get-response');
       console.log(data);
+      this.xAxis = data.XZsurface.data.map(k=> k[0]);
       let firstChart = {
         data: data.XZsurface.data,
         color: 'red',
