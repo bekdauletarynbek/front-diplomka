@@ -117,7 +117,7 @@ export default {
       console.log(data);
     },
     async getData() {
-      let {data} = await axios.get('http://localhost:3000/api/get-response');
+      let {data} = await axios.get('/api/get-response');
       console.log(data);
       let firstChart = {
         data: data.XZsurface.data,
