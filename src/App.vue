@@ -112,6 +112,8 @@ export default {
         ...this.form
       });
       console.log(data);
+      this.getData();
+      this.show = false;
     },
     async getData() {
       let {data} = await axios.get('/api/get-response');
