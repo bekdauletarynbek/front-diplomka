@@ -18,8 +18,8 @@
       </div>
     </div>
     <div class="flex-grow px-5 py-4 h-full overflow-y-auto">
-        <div id="container"></div>
-        <div id="pieChart"></div>
+        <div id="XZsurface"></div>
+        <div id="Roka"></div>
     </div>
   </div>
   <el-dialog title="История вычислении" v-model="show">
@@ -72,19 +72,19 @@ export default {
     // Age categories
   },
   methods: {
-    drawCategoryChart(id, data) {
-      Highcharts.chart('container', {
+    drawCategoryChart(id, {data, xAxis, title}) {
+      Highcharts.chart(id, {
         chart: {
           type: 'spline'
         },
         title: {
-          text: 'XZsurface + Electrodes График'
+          text: title
         },
         xAxis: {
           accessibility: {
             description: 'X'
           },
-          categories: this.xAxis,
+          categories: xAxis,
         },
         yAxis: {
           title: {
@@ -118,7 +118,7 @@ export default {
     async getData() {
       let {data} = await axios.get('/api/get-response');
       console.log(data);
-      this.xAxis = data.XZsurface.map(k=> k[0]);
+      let xAxis = data.XZsurface.map(k=> k[0]);
       let firstChart = {
         data: data.XZsurface,
         color: 'red',
@@ -129,7 +129,14 @@ export default {
         title: 'Electrodes',
         color: 'blue'
       }
-      this.drawCategoryChart('', [firstChart, secondChart])
+      let rokaChart = {
+        data: data.Roka,
+        color: 'blue',
+        title: 'Roka'
+      }
+      let xAxisRoka = data.Roka.map(k=> k[0]);
+      this.drawCategoryChart('XZsurface', {data: [firstChart, secondChart], xAxis, title: 'XZsurface + Electrodes'})
+      this.drawCategoryChart('Roka', {data: [rokaChart], xAxis: xAxisRoka, title: 'Roka Chart'})
     }
   }
 }
