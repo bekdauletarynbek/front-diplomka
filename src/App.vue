@@ -186,6 +186,7 @@ export default {
       this.createAnyChart('nuxk', matrix, 'NuxK');
       this.createAnyChart('nuxy', matrixy, 'NuxY');
       this.createAnyChart('nuWaterLeft', matrixWaterLeft, 'NuWaterLeft');
+      console.log(xAxis.length, firstChart.length)
       this.drawCategoryChart('XZsurface', {data: [firstChart, secondChart, XZwater], xAxis, title: 'XZsurface + Electrodes'})
       this.drawCategoryChart('Roka', {data: [rokaChart], xAxis: xAxisRoka, title: 'Roka Chart'})
     }
