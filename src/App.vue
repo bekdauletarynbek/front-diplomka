@@ -20,7 +20,7 @@
     <div class="flex-grow px-5 py-4 h-full overflow-y-auto">
         <div id="XZsurface"></div>
         <div id="Roka"></div>
-      <div id="surfaceData" class="height: 400px"></div>
+      <div id="surfaceData" class="height: 1000px"></div>
     </div>
   </div>
   <el-dialog title="История вычислении" v-model="show">
