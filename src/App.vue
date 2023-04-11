@@ -88,7 +88,7 @@ export default {
           accessibility: {
             description: 'X'
           },
-          categories: xAxis,
+          categories: xAxis.sort((a, b)=>a - b),
         },
         yAxis: {
           title: {
