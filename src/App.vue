@@ -20,7 +20,8 @@
     <div class="flex-grow px-5 py-4 h-full overflow-y-auto">
         <div id="XZsurface"></div>
         <div id="Roka"></div>
-      <div id="surfaceData" class="height: 1000px"></div>
+      <div id="nuxk"></div>
+      <div id="nuxy"></div>
     </div>
   </div>
   <el-dialog title="История вычислении" v-model="show">
@@ -117,14 +118,14 @@ export default {
       this.getData();
       this.show = false;
     },
-    async createAnyChart(chartData) {
+    async createAnyChart(id, chartData) {
       let chart = anychart.surface(chartData);
       var colorRange = chart.colorRange();
       colorRange.enabled(true);
       colorRange.orientation('right');
       chart.height(500);
       chart.title("Surface Chart: Basic Sample");
-      chart.container('surfaceData');
+      chart.container(id);
       chart.draw();
     },
     async getData() {
@@ -154,7 +155,15 @@ export default {
           matrix.push([i, k, surfaceData[i][k]]);
         }
       }
-      this.createAnyChart(matrix);
+      let surfaceDataY = data.nuxy;
+      let matrixy = [];
+      for(let i = 0; i < surfaceDataY.length; i++) {
+        for(let k = 0; k < surfaceDataY[i].length; k++) {
+          matrixy.push([i, k, surfaceDataY[i][k]]);
+        }
+      }
+      this.createAnyChart('nuxk', matrix);
+      this.createAnyChart('nuxy', matrixy);
       this.drawCategoryChart('XZsurface', {data: [firstChart, secondChart], xAxis, title: 'XZsurface + Electrodes'})
       this.drawCategoryChart('Roka', {data: [rokaChart], xAxis: xAxisRoka, title: 'Roka Chart'})
     }
