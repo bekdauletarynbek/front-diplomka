@@ -119,6 +119,9 @@ export default {
     },
     async createAnyChart(chartData) {
       let chart = anychart.surface(chartData);
+      var colorRange = chart.colorRange();
+      colorRange.enabled(true);
+      colorRange.orientation('right');
       chart.title("Surface Chart: Basic Sample");
       chart.container('surfaceData');
       chart.draw();
