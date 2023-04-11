@@ -122,7 +122,7 @@ export default {
       var colorRange = chart.colorRange();
       colorRange.enabled(true);
       colorRange.orientation('right');
-      chart.height(1000);
+      chart.height(500);
       chart.title("Surface Chart: Basic Sample");
       chart.container('surfaceData');
       chart.draw();
@@ -169,5 +169,10 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+#surfaceData {
+  svg {
+    height: 500px;
+  }
 }
 </style>
