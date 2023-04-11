@@ -22,6 +22,7 @@
         <div id="Roka"></div>
       <div id="nuxk"></div>
       <div id="nuxy"></div>
+      <div id="nuWaterLeft"></div>
     </div>
   </div>
   <el-dialog title="История вычислении" v-model="show">
@@ -171,8 +172,16 @@ export default {
           matrixy.push([i, k, surfaceDataY[i][k]]);
         }
       }
+      let surfaceDataWater = data.nuWaterLeft;
+      let matrixWaterLeft = [];
+      for(let i = 0; i < surfaceDataWater.length; i++) {
+        for(let k = 0; k < surfaceDataWater[i].length; k++) {
+          matrixWaterLeft.push([i, k, surfaceDataWater[i][k]]);
+        }
+      }
       this.createAnyChart('nuxk', matrix, 'NuxK');
       this.createAnyChart('nuxy', matrixy, 'NuxY');
+      this.createAnyChart('nuWaterLeft', matrixWaterLeft, 'NuWaterLeft');
       this.drawCategoryChart('XZsurface', {data: [firstChart, secondChart], xAxis, title: 'XZsurface + Electrodes'})
       this.drawCategoryChart('Roka', {data: [rokaChart], xAxis: xAxisRoka, title: 'Roka Chart'})
     }
