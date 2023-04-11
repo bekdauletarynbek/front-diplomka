@@ -122,7 +122,7 @@ export default {
       var colorRange = chart.colorRange();
       colorRange.enabled(true);
       colorRange.orientation('right');
-      chart.height('50%');
+      chart.height(400);
       chart.title("Surface Chart: Basic Sample");
       chart.container('surfaceData');
       chart.draw();
