@@ -170,9 +170,7 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
-#surfaceData {
-  svg {
-    height: 500px;
-  }
+.anychart-ui-support {
+  height: 500px !important;
 }
 </style>
