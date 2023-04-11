@@ -120,9 +120,18 @@ export default {
     },
     async createAnyChart(id, chartData, title) {
       let chart = anychart.surface(chartData);
-      var colorRange = chart.colorRange();
-      colorRange.enabled(true);
-      colorRange.orientation('right');
+      chart.colorRange().enabled(true)
+          .colorLineSize(20)
+          .stroke('#000000')
+          .ticks()
+          .enabled(true)
+          .stroke('#000000')
+          .position('inside');
+
+      // Set color scale
+      const colorScale = anychart.scales.linearColor();
+      colorScale.colors(['#FF0000', '#FFFF00', '#00FF00']); // Set the desired colors here
+      chart.colorScale(colorScale);
       chart.height(500);
       chart.title(title);
       chart.container(id);
