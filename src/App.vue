@@ -140,8 +140,12 @@ export default {
     },
     async getData() {
       let {data} = await axios.get('/api/get-response');
-      console.log(data);
       let xAxis = data.XZsurface.map(k=> k[0]);
+      let XZwater = {
+        data: data.XZwater,
+        color: 'blue',
+        title: 'XZSurface'
+      };
       let firstChart = {
         data: data.XZsurface,
         color: 'red',
@@ -150,7 +154,7 @@ export default {
       let secondChart = {
         data: data.electrodes,
         title: 'Electrodes',
-        color: 'blue'
+        color: 'yellow'
       }
       let rokaChart = {
         data: data.Roka,
@@ -182,7 +186,7 @@ export default {
       this.createAnyChart('nuxk', matrix, 'NuxK');
       this.createAnyChart('nuxy', matrixy, 'NuxY');
       this.createAnyChart('nuWaterLeft', matrixWaterLeft, 'NuWaterLeft');
-      this.drawCategoryChart('XZsurface', {data: [firstChart, secondChart], xAxis, title: 'XZsurface + Electrodes'})
+      this.drawCategoryChart('XZsurface', {data: [firstChart, secondChart, XZwater], xAxis, title: 'XZsurface + Electrodes'})
       this.drawCategoryChart('Roka', {data: [rokaChart], xAxis: xAxisRoka, title: 'Roka Chart'})
     }
   }
