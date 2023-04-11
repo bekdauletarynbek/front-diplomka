@@ -20,6 +20,7 @@
     <div class="flex-grow px-5 py-4 h-full overflow-y-auto">
         <div id="XZsurface"></div>
         <div id="Roka"></div>
+      <div id="surfaceData"></div>
     </div>
   </div>
   <el-dialog title="История вычислении" v-model="show">
@@ -48,6 +49,7 @@
 
 <script>
 import Highcharts from 'highcharts';
+import anychart from 'anychart'
 import axios from 'axios'
 
 export default {
@@ -115,6 +117,12 @@ export default {
       this.getData();
       this.show = false;
     },
+    async createAnyChart(chartData) {
+      let chart = anychart.surface(chartData);
+      chart.title("Surface Chart: Basic Sample");
+      chart.container('surfaceData');
+      chart.draw();
+    },
     async getData() {
       let {data} = await axios.get('/api/get-response');
       console.log(data);
@@ -135,6 +143,14 @@ export default {
         title: 'Roka'
       }
       let xAxisRoka = data.Roka.map(k=> k[0]);
+      let surfaceData = data.nuxk;
+      let matrix = [];
+      for(let i = 0; i < surfaceData.length; i++) {
+        for(let k = 0; k < surfaceData[i].length; k++) {
+          matrix.push([i, k, surfaceData[i][k]]);
+        }
+      }
+      this.createAnyChart(matrix);
       this.drawCategoryChart('XZsurface', {data: [firstChart, secondChart], xAxis, title: 'XZsurface + Electrodes'})
       this.drawCategoryChart('Roka', {data: [rokaChart], xAxis: xAxisRoka, title: 'Roka Chart'})
     }
