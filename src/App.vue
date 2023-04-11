@@ -130,7 +130,7 @@ export default {
 
       // Set color scale
       const colorScale = anychart.scales.linearColor();
-      colorScale.colors(['#FF0000', '#FFFF00', '#00FF00']); // Set the desired colors here
+      colorScale.colors(['#FF0000', '#FFFF00', '#2a9d8f']); // Set the desired colors here
       chart.colorScale(colorScale);
       chart.height(500);
       chart.title(title);
