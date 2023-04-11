@@ -118,13 +118,13 @@ export default {
       this.getData();
       this.show = false;
     },
-    async createAnyChart(id, chartData) {
+    async createAnyChart(id, chartData, title) {
       let chart = anychart.surface(chartData);
       var colorRange = chart.colorRange();
       colorRange.enabled(true);
       colorRange.orientation('right');
       chart.height(500);
-      chart.title("Surface Chart: Basic Sample");
+      chart.title(title);
       chart.container(id);
       chart.draw();
     },
@@ -162,8 +162,8 @@ export default {
           matrixy.push([i, k, surfaceDataY[i][k]]);
         }
       }
-      this.createAnyChart('nuxk', matrix);
-      this.createAnyChart('nuxy', matrixy);
+      this.createAnyChart('nuxk', matrix, 'NuxK');
+      this.createAnyChart('nuxy', matrixy, 'NuxY');
       this.drawCategoryChart('XZsurface', {data: [firstChart, secondChart], xAxis, title: 'XZsurface + Electrodes'})
       this.drawCategoryChart('Roka', {data: [rokaChart], xAxis: xAxisRoka, title: 'Roka Chart'})
     }
