@@ -86,6 +86,7 @@ export default {
   },
   methods: {
     drawCategoryChart(id, {data, xAxis, title}) {
+      console.log(xAxis.sort((a, b)=>a - b))
       Highcharts.chart(id, {
         chart: {
           type: 'spline'
