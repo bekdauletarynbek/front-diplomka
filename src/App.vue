@@ -27,16 +27,16 @@
   </div>
   <el-dialog title="История вычислении" v-model="show">
     <el-form :model="form" label-position="top">
+      <el-form-item label="Model:">
+        <el-select v-model="form.typeOfModel">
+          <el-option v-for="model in models" :key="model.id" :value="model.id" :label="model.title"></el-option>
+        </el-select>
+      </el-form-item>
       <el-form-item label=" Enter AB (meters)">
         <el-input v-model="form.AbMetres"></el-input>
       </el-form-item>
       <el-form-item label="Enter position of A point from relief start point (meters)">
         <el-input v-model="form.reliefStartPoint"></el-input>
-      </el-form-item>
-      <el-form-item label="Model: 1 - relief, 2 - water on the left, 3 - two water surfaces,
- 4- two water surfaces, damb on the base , 5- water on the rigth and base
- 6- one water surfaces, damb on the base , 7- two water spaces, leaking and base">
-        <el-input v-model="form.typeOfModel"></el-input>
       </el-form-item>
       <el-form-item label=" Enter nks - number of segments between MN; 1<nks<=3">
         <el-input v-model="form.nks"></el-input>
@@ -69,6 +69,15 @@ export default {
         heightOfWaterAtLeftSide: null,
       },
       xAxis: [],
+      models: [
+        {title: 'relief', id: 1},
+        {title: 'water on the left', id: 2},
+        {title: 'two water surfaces', id: 3},
+        {title: 'two water surfaces, damb on the base', id: 4},
+        {title: 'water on the rigth and base', id: 5},
+        {title: 'one water surfaces, damb on the base', id: 6},
+        {title: 'two water spaces, leaking and base', id: 7}
+      ]
     }
   },
   async mounted() {
