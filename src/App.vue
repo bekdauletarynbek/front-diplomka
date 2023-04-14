@@ -28,8 +28,8 @@
   <el-dialog title="История вычислении" v-model="show">
     <el-form :model="form" label-position="top">
       <el-form-item label="Model:">
-        <el-select v-model="form.typeOfModel">
-          <el-option v-for="model in models" class="w-full" :key="model.id" :value="model.id" :label="model.title"></el-option>
+        <el-select v-model="form.typeOfModel" class="w-full">
+          <el-option v-for="model in models"  :key="model.id" :value="model.id" :label="model.title"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label=" Enter AB (meters)">
