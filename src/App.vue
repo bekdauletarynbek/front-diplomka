@@ -25,7 +25,7 @@
       <div id="nuWaterLeft"></div>
     </div>
   </div>
-  <el-dialog title="История вычислении" v-model="show">
+  <el-dialog title="История вычислении" v-model="show" top="20px">
     <el-form :model="form" label-position="top">
       <el-form-item label="Model:">
         <el-select v-model="form.typeOfModel" class="w-full">
