@@ -109,8 +109,10 @@ export default {
           },
         },
         tooltip: {
-          crosshairs: true,
-          shared: true
+          pointFormatter: function() {
+            var point = this;
+            return '<span style="color:' + point.color + '">\u25CF</span> ' + point.series.name + ': <b>' + (point.y > 0 ? 'On' : 'off') + '</b><br/>';
+          }
         },
         plotOptions: {
           series: {
