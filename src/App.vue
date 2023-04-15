@@ -150,8 +150,10 @@ export default {
     },
     async getData() {
       let {data} = await axios.get('/api/get-response');
-      let x = [...data.XZsurface, ...data.electrodes, ...data.XZwater];
-      let xAxis = x.map(k=> k[0]);
+      let xXZWater = data.XZwater.map(k=> k[0]);
+      let xXZSurface = data.XZsurface.map(k=> k[0]);
+      let xElectrodes = data.electrodes.map(k=> k[0]);
+      let xAxis = [...xXZSurface, ...xXZWater, ...xElectrodes];
       let XZwater = {
         data: data.XZwater,
         color: 'blue',
