@@ -150,9 +150,21 @@ export default {
     },
     async getData() {
       let {data} = await axios.get('/api/get-response');
-      let xXZWater = data.XZwater.map(k=> k[0]);
-      let xXZSurface = data.XZsurface.map(k=> k[0]);
-      let xElectrodes = data.electrodes.map(k=> k[0]);
+      let xXZWater = [];
+      for(let val of data.XZwater) {
+        if(val[1])
+        xXZWater.push(val[0])
+      }
+      let xXZSurface = [];
+      for(let val of data.XZsurface) {
+        if(val[1])
+          xXZSurface.push(val[0])
+      }
+      let xElectrodes = [];
+      for(let val of data.electrodes) {
+        if(val[1])
+          xElectrodes.push(val[0])
+      }
       let xAxis = [...xXZSurface, ...xXZWater, ...xElectrodes];
       let XZwater = {
         data: data.XZwater,
