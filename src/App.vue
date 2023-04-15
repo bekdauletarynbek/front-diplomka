@@ -100,6 +100,9 @@ export default {
           },
           categories: xAxis.sort((a, b)=>a - b),
         },
+        legend: {
+          enabled: true
+        },
         yAxis: {
           title: {
             text: 'Z'
@@ -110,6 +113,9 @@ export default {
           shared: true
         },
         plotOptions: {
+          series: {
+            showInLegend: true
+          },
           spline: {
             marker: {
               radius: 4,
