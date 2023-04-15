@@ -111,8 +111,10 @@ export default {
         tooltip: {
           pointFormatter: function() {
             var point = this;
-            return '<span style="color:' + point.color + '">\u25CF</span> ' + point.series.name + ': <b>' + (point.y > 0 ? 'On' : 'off') + '</b><br/>';
-          }
+            return '<span style="color:' + point.color + '">\u25CF</span> ' + point.series.name + ': <b>' + point.y  + '</b><br/>';
+          },
+          crosshair: true, 
+          shared: true,
         },
         plotOptions: {
           series: {
