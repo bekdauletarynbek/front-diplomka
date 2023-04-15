@@ -175,22 +175,22 @@ export default {
       let XZwater = {
         data: data.XZwater,
         color: 'blue',
-        title: 'XZSurface'
+        name: 'XZSurface'
       };
       let firstChart = {
         data: data.XZsurface,
         color: 'red',
-        title: 'XZSurface'
+        name: 'XZSurface'
       };
       let secondChart = {
         data: data.electrodes,
-        title: 'Electrodes',
+        name: 'Electrodes',
         color: 'yellow'
       }
       let rokaChart = {
         data: data.Roka,
         color: 'blue',
-        title: 'Roka'
+        name: 'Roka'
       }
       let xAxisRoka = data.Roka.map(k=> k[0]);
       let surfaceData = data.nuxk;
