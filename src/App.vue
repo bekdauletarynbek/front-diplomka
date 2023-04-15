@@ -99,6 +99,8 @@ export default {
             description: 'X'
           },
           categories: xAxis.sort((a, b)=>a - b),
+          useHTML: true,
+          crosshair: true,
         },
         legend: {
           enabled: true
@@ -115,6 +117,7 @@ export default {
           },
           crosshair: true, 
           shared: true,
+          useHTML: true,
         },
         plotOptions: {
           series: {
