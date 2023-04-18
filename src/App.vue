@@ -46,6 +46,9 @@ import Highcharts from 'highcharts';
 import anychart from 'anychart'
 import axios from 'axios'
 
+
+let colorScale = anychart.scales.linearColor();
+colorScale.colors(['#FF0000', '#FFFF00', '#00FF00']);
 export default {
   name: 'App',
   components: {
@@ -164,9 +167,7 @@ export default {
   },
   methods: {
     createColorScale() {
-      // Create a color scale
-      this.colorScale = anychart.scales.linearColor();
-      this.colorScale.colors(['#FF0000', '#FFFF00', '#00FF00']); // Set the desired colors here
+      // Create a color scale // Set the desired colors here
     },
     drawCategoryChart(id, {data, xAxis, title}) {
       console.log(data)
@@ -235,7 +236,7 @@ export default {
           .stroke('#000000')
           .position('inside');
 
-      chart.colorScale(this.colorScale);
+      chart.colorScale(colorScale);
       chart.height(500);
       chart.title(title);
       chart.container(id);
