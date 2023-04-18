@@ -251,6 +251,11 @@ export default {
         if(val[1])
         xXZWater.push(Math.round(val[0]))
       }
+      let xXZWater2 = [];
+      for(let val of data.XZwater2) {
+        if(val[1])
+        xXZWater2.push(Math.round(val[0]))
+      }
       let xXZSurface = [];
       for(let val of data.XZsurface) {
         if(val[1])
@@ -261,11 +266,16 @@ export default {
         if(val[1])
           xElectrodes.push(Math.round(val[0]))
       }
-      let xAxis = [...xXZSurface, ...xXZWater, ...xElectrodes];
+      let xAxis = [...xXZSurface, ...xXZWater, ...xXZWater2, ...xElectrodes];
+      let XZwater2 = {
+        data: data.XZwater2,
+        color: 'blue',
+        name: 'XZwater'
+      };
       let XZwater = {
         data: data.XZwater,
         color: 'blue',
-        name: 'XZSurface'
+        name: 'XZwater'
       };
       let firstChart = {
         data: data.XZsurface,
@@ -317,7 +327,7 @@ export default {
       this.createAnyChart('nuWaterLeft', matrixWaterLeft, 'NuWaterLeft');
       this.createAnyChart('nuWaterRight', matrixWaterRight, 'NuWaterRight');
       console.log(xAxis.length, firstChart.length)
-      this.drawCategoryChart('XZsurface', {data: [firstChart, secondChart, XZwater], xAxis, title: 'XZsurface + Electrodes'})
+      this.drawCategoryChart('XZsurface', {data: [firstChart, secondChart, XZwater, XZwater2], xAxis, title: 'XZsurface + Electrodes'})
       this.drawCategoryChart('Roka', {data: [rokaChart], xAxis: xAxisRoka, title: 'Roka Chart'})
     }
   }
