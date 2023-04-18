@@ -32,7 +32,7 @@
           <el-option v-for="model in models"  :key="model.id" :value="model.id" :label="model.title"></el-option>
         </el-select>
       </el-form-item>
-      <el-form-item v-for="inputs in inputLabels" :key="inputs.title" :label="inputs.title">
+      <el-form-item v-for="inputs in inputLabels[form.typeOfModel]" :key="inputs.title" :label="inputs.title">
         <el-input v-model="form[inputs.key]"></el-input>
       </el-form-item>
       <el-button @click="calculateResult" type="success" round size="small">Вычислить</el-button>
