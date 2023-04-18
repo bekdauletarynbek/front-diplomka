@@ -17,7 +17,7 @@
         </div>
       </div>
     </div>
-    <div class="flex-grow px-5 py-4 h-full overflow-y-auto">
+    <div class="flex-grow px-5 py-4 h-full overflow-y-auto" v-loading="loading">
         <div id="XZsurface"></div>
         <div id="Roka"></div>
       <div id="nuxk"></div>
@@ -32,17 +32,8 @@
           <el-option v-for="model in models"  :key="model.id" :value="model.id" :label="model.title"></el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label=" Enter AB (meters)">
-        <el-input v-model="form.AbMetres"></el-input>
-      </el-form-item>
-      <el-form-item label="Enter position of A point from relief start point (meters)">
-        <el-input v-model="form.reliefStartPoint"></el-input>
-      </el-form-item>
-      <el-form-item label=" Enter nks - number of segments between MN; 1<nks<=3">
-        <el-input v-model="form.nks"></el-input>
-      </el-form-item>
-      <el-form-item label="Heght of the water at left side(m) <   16.6227436 ">
-        <el-input v-model="form.heightOfWaterAtLeftSide"></el-input>
+      <el-form-item v-for="inputs in inputLabels" :key="inputs.title" :label="inputs.title">
+        <el-input v-model="form[inputs.key]"></el-input>
       </el-form-item>
       <el-button @click="calculateResult" type="success" round size="small">Вычислить</el-button>
     </el-form>
@@ -60,13 +51,16 @@ export default {
   },
   data() {
     return {
+      labels: ['AbMetres', 'reliefStartPoint', 'nks', 'heightOfWaterAtLeftSide', 'heightOfWaterAtRightSide'],
       show: false,
+      loading: false,
       form: {
         AbMetres: null,
         reliefStartPoint: null,
         typeOfModel: null,
         nks: null,
         heightOfWaterAtLeftSide: null,
+        heightOfWaterAtRightSide: null,
       },
       xAxis: [],
       models: [
@@ -77,7 +71,73 @@ export default {
         {title: 'water on the rigth and base', id: 5},
         {title: 'one water surfaces, damb on the base', id: 6},
         {title: 'two water spaces, leaking and base', id: 7}
-      ]
+      ],
+      inputLabels: {
+        1: [
+          {
+            title: 'Enter AB (meters)',
+            key: 'AbMetres',
+          },
+          {
+            title: 'Enter position of A point from relief start point (meters)',
+            key: 'reliefStartPoint'
+          },
+          {
+            title: 'Enter nks - number of segments between MN; 1<nks<=3',
+            key: 'nks'
+          },
+        ],
+        2: [
+          {
+            title: 'Enter AB (meters)',
+            key: 'AbMetres',
+          },
+          {
+            title: 'Enter position of A point from relief start point (meters)',
+            key: 'reliefStartPoint'
+          },
+          {
+            title: 'Enter nks - number of segments between MN; 1<nks<=3',
+            key: 'nks'
+          },
+          {
+            title: 'Heght of the water at left side(m) <   16.6227436',
+            key: 'heightOfWaterAtLeftSide'
+          },
+        ],
+        3: [
+          {
+            title: 'Enter AB (meters)',
+            key: 'AbMetres',
+          },
+          {
+            title: 'Enter position of A point from relief start point (meters)',
+            key: 'reliefStartPoint'
+          },
+          {
+            title: 'Enter nks - number of segments between MN; 1<nks<=3',
+            key: 'nks'
+          },
+          {
+            title: 'Heght of the water at left side(m) <   16.6227436',
+            key: 'heightOfWaterAtLeftSide'
+          },
+          {
+            title: 'Heght of the water at the right side(m)>2.00000000and<18.37763026',
+            key: 'heightOfWaterAtRightSide'
+          }
+        ],
+        4: [
+          {},
+          {},
+          {},
+          {},
+          {},
+        ],
+        5: [],
+        6: [],
+        7: []
+      }
     }
   },
   async mounted() {
@@ -162,7 +222,9 @@ export default {
       chart.draw();
     },
     async getData() {
+      this.loading = true;
       let {data} = await axios.get('/api/get-response');
+      this.loading = false;
       let xXZWater = [];
       for(let val of data.XZwater) {
         if(val[1])
