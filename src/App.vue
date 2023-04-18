@@ -128,11 +128,26 @@ export default {
           }
         ],
         4: [
-          {},
-          {},
-          {},
-          {},
-          {},
+          {
+            title: 'Enter AB (meters)',
+            key: 'AbMetres',
+          },
+          {
+            title: 'Enter position of A point from relief start point (meters)',
+            key: 'reliefStartPoint'
+          },
+          {
+            title: 'Enter nks - number of segments between MN; 1<nks<=3',
+            key: 'nks'
+          },
+          {
+            title: 'Heght of the water at left side(m) <   16.6227436',
+            key: 'heightOfWaterAtLeftSide'
+          },
+          {
+            title: 'Heght of the water at the right side(m)>2.00000000and<18.37763026',
+            key: 'heightOfWaterAtRightSide'
+          }
         ],
         5: [],
         6: [],
