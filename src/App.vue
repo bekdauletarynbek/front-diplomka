@@ -23,6 +23,7 @@
       <div id="nuxk"></div>
       <div id="nuxy"></div>
       <div id="nuWaterLeft"></div>
+      <div id="nuWaterRight"></div>
     </div>
   </div>
   <el-dialog title="История вычислении" v-model="show" top="20px">
@@ -152,14 +153,21 @@ export default {
         5: [],
         6: [],
         7: []
-      }
+      },
+      colorScale: null
     }
   },
   async mounted() {
+    this.createColorScale();
     await this.getData();
     // Age categories
   },
   methods: {
+    createColorScale() {
+      // Create a color scale
+      this.colorScale = anychart.scales.linearColor();
+      this.colorScale.colors(['#FF0000', '#FFFF00', '#00FF00']); // Set the desired colors here
+    },
     drawCategoryChart(id, {data, xAxis, title}) {
       console.log(data)
       Highcharts.chart(id, {
@@ -227,10 +235,7 @@ export default {
           .stroke('#000000')
           .position('inside');
 
-      // Set color scale
-      const colorScale = anychart.scales.linearColor();
-      colorScale.colors(['#FF0000', '#FFFF00', '#2a9d8f']); // Set the desired colors here
-      chart.colorScale(colorScale);
+      chart.colorScale(this.colorScale);
       chart.height(500);
       chart.title(title);
       chart.container(id);
@@ -298,9 +303,18 @@ export default {
           matrixWaterLeft.push([i, k, surfaceDataWater[i][k]]);
         }
       }
+
+      let surfaceDataWaterRight = data.nuWaterRight;
+      let matrixWaterRight = [];
+      for(let i = 0; i < surfaceDataWaterRight.length; i++) {
+        for(let k = 0; k < surfaceDataWaterRight[i].length; k++) {
+          matrixWaterRight.push([i, k, surfaceDataWaterRight[i][k]]);
+        }
+      }
       this.createAnyChart('nuxk', matrix, 'NuxK');
       this.createAnyChart('nuxy', matrixy, 'NuxY');
       this.createAnyChart('nuWaterLeft', matrixWaterLeft, 'NuWaterLeft');
+      this.createAnyChart('nuWaterRight', matrixWaterRight, 'NuWaterRight');
       console.log(xAxis.length, firstChart.length)
       this.drawCategoryChart('XZsurface', {data: [firstChart, secondChart, XZwater], xAxis, title: 'XZsurface + Electrodes'})
       this.drawCategoryChart('Roka', {data: [rokaChart], xAxis: xAxisRoka, title: 'Roka Chart'})
