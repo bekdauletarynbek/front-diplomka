@@ -171,8 +171,8 @@ export default {
     createColorScale() {
       // Create a color scale // Set the desired colors here
     },
-    drawCategoryChart(id, {data, xAxis, title}) {
-      console.log(xAxis)
+    drawCategoryChart(id, {data, xAxisData, title}) {
+      console.log(xAxisData)
       Highcharts.chart(id, {
         chart: {
           type: 'spline'
@@ -184,7 +184,7 @@ export default {
           accessibility: {
             description: 'X'
           },
-          categories: xAxis,
+          categories: xAxisData,
           useHTML: true,
           crosshair: true,
         },
@@ -342,8 +342,8 @@ export default {
       this.createAnyChart('nuWaterLeft', matrixWaterLeft, 'NuWaterLeft');
       this.createAnyChart('nuWaterRight', matrixWaterRight, 'NuWaterRight');
       console.log(xAxis.length, firstChart.length)
-      this.drawCategoryChart('XZsurface', {data: dataSplineChart, xAxis, title: 'XZsurface + Electrodes'})
-      this.drawCategoryChart('Roka', {data: [rokaChart], xAxis: xAxisRoka, title: 'Roka Chart'})
+      this.drawCategoryChart('XZsurface', {data: dataSplineChart, xAxisData: xAxis, title: 'XZsurface + Electrodes'})
+      this.drawCategoryChart('Roka', {data: [rokaChart], xAxisData: xAxisRoka, title: 'Roka Chart'})
       console.log(dataSplineChart)
     }
   }
