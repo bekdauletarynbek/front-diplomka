@@ -214,8 +214,7 @@ export default {
         ...this.form
       });
       console.log(data);
-      this.getData();
-      this.show = false;
+      location.reload()
     },
     async createAnyChart(id, chartData, title) {
       let chart = anychart.surface(chartData);
