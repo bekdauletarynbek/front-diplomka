@@ -17,7 +17,6 @@
     <div class="flex-grow px-5 py-4 h-full overflow-y-auto" v-loading="loading">
         <h3>{{ typeOfModel }} модель бойынша есептеу жүргізілді</h3>
         <p class="text-gray-500">Кіріс ақпараттар: {{ inputLabels[typeOfModel].join(', ') }}</p>
-
         <div id="XZsurface"></div>
         <div id="Roka"></div>
       <div id="nuxk"></div>
@@ -67,6 +66,7 @@ export default {
         heightOfWaterAtRightSide: null,
       },
       xAxis: [],
+      typeOfModel: 3,
       models: [
         {title: 'relief', id: 1},
         {title: 'water on the left', id: 2},
@@ -250,6 +250,7 @@ export default {
     },
     createChartsByData(data) {
       let typeOfModel = +data.typeOfModel;
+      this.typeOfModel = typeOfModel;
 
       let xXZWater = [];
       for(let val of data.XZwater) {
