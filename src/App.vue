@@ -267,6 +267,7 @@ export default {
       if(typeOfModel === 3) {
         xAxis.push(...xXZWater2);
       }
+      xAxis = xAxis.sort((a, b) => a - b);
       let XZwater2 = {
         data: data.XZwater2.sort((a, b) => a[0] - b[0]),
         color: 'blue',
