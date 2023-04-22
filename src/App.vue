@@ -16,7 +16,9 @@
     </div>
     <div class="flex-grow px-5 py-4 h-full overflow-y-auto" v-loading="loading">
         <h3>{{ typeOfModel }} модель бойынша есептеу жүргізілді</h3>
-        <p class="text-gray-500">Кіріс ақпараттар: {{ inputLabels[typeOfModel].join(', ') }}</p>
+        <p class="text-gray-500">Кіріс ақпараттар: 
+          <span v-for="item in inputLabels[typeOfModel]" :key="item.title">{{ item.title }}</span>
+        </p>
         <div id="XZsurface"></div>
         <div id="Roka"></div>
       <div id="nuxk"></div>
