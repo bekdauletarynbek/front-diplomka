@@ -2,22 +2,22 @@
   <div class="flex h-full" style="height: 100vh">
     <div class="text-left py-3 w-81 border-0 border-r border-solid border-gray-200 h-full flex-shrink-0">
       <div class="border-0 border-b border-solid border-gray-200 px-3 py-3">
-        <p class="w-72">Добро пожаловать в первый онлайн систему контроля дамбами</p>
-        <el-button type="text">Показать историю вычислении</el-button>
+        <p class="w-72">Дамба мен бөгеттердің онлайн бақылау платформасына қош келдіңіз</p>
+        <el-button type="text">Есептеулер тарихын көру</el-button>
       </div>
       <div class="px-3 py-5 flex flex-col">
       <el-upload>
-        <el-button type="primary" round size="small" plain>Выбрать файл для входных данных</el-button>
-      </el-upload>
-      <el-upload style="margin-top: 20px">
-        <el-button type="primary" round size="small" plain>Выбрать второй файл для вычисления</el-button>
+        <el-button type="primary" round size="small" plain>Кіріс ақпараттарды таңдау</el-button>
       </el-upload>
         <div class="mt-3">
-        <el-button @click="show=!show" type="success" size="small" round>Начать вычисление</el-button>
+        <el-button @click="show=!show" type="success" size="small" round>Есептеуді бастау</el-button>
         </div>
       </div>
     </div>
     <div class="flex-grow px-5 py-4 h-full overflow-y-auto" v-loading="loading">
+        <h3>{{ typeOfModel }} модель бойынша есептеу жүргізілді</h3>
+        <p class="text-gray-500">Кіріс ақпараттар: {{ inputLabels[typeOfModel].join(', ') }}</p>
+
         <div id="XZsurface"></div>
         <div id="Roka"></div>
       <div id="nuxk"></div>
@@ -170,7 +170,7 @@ export default {
       // Create a color scale // Set the desired colors here
     },
     drawCategoryChart(id, {data, xAxis, title}) {
-      console.log(data)
+      console.log(xAxis)
       Highcharts.chart(id, {
         chart: {
           type: 'spline'
@@ -278,7 +278,7 @@ export default {
       let XZwater2 = {
         data: data.XZwater2,
         color: 'blue',
-        name: 'XZwater'
+        name: 'XZwater2'
       };
       let XZwater = {
         data: data.XZwater,
