@@ -344,6 +344,7 @@ export default {
       console.log(xAxis.length, firstChart.length)
       this.drawCategoryChart('XZsurface', {data: dataSplineChart, xAxis, title: 'XZsurface + Electrodes'})
       this.drawCategoryChart('Roka', {data: [rokaChart], xAxis: xAxisRoka, title: 'Roka Chart'})
+      console.log(dataSplineChart)
     }
   }
 }
