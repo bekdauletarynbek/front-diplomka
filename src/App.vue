@@ -279,27 +279,27 @@ export default {
         xAxis.push(...xXZWater2);
       }
       let XZwater2 = {
-        data: data.XZwater2,
+        data: data.XZwater2.sort((a, b) => a[0] - b[0]),
         color: 'blue',
         name: 'XZwater2'
       };
       let XZwater = {
-        data: data.XZwater,
+        data: data.XZwater.sort((a, b) => a[0] - b[0]),
         color: 'blue',
         name: 'XZwater'
       };
       let firstChart = {
-        data: data.XZsurface,
+        data: data.XZsurface.sort((a, b) => a[0] - b[0]),
         color: 'red',
         name: 'XZSurface'
       };
       let secondChart = {
-        data: data.electrodes,
+        data: data.electrodes.sort((a, b) => a[0] - b[0]),
         name: 'Electrodes',
         color: 'yellow'
       }
       let rokaChart = {
-        data: data.Roka,
+        data: data.Roka.sort((a, b) => a[0] - b[0]),
         color: 'blue',
         name: 'Roka'
       }
