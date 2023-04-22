@@ -182,7 +182,7 @@ export default {
           accessibility: {
             description: 'X'
           },
-          categories: xAxis.sort((a, b)=>a - b),
+          categories: xAxis,
           useHTML: true,
           crosshair: true,
         },
@@ -246,6 +246,11 @@ export default {
       this.loading = true;
       let {data} = await axios.get('/api/get-response');
       this.loading = false;
+      this.createChartsByData(data);
+    },
+    createChartsByData(data) {
+      let typeOfModel = +data.typeOfModel;
+
       let xXZWater = [];
       for(let val of data.XZwater) {
         if(val[1])
@@ -266,7 +271,10 @@ export default {
         if(val[1])
           xElectrodes.push(Math.round(val[0]))
       }
-      let xAxis = [...xXZSurface, ...xXZWater, ...xXZWater2, ...xElectrodes];
+      let xAxis = [...xXZSurface, ...xXZWater, ...xElectrodes];
+      if(typeOfModel === 3) {
+        xAxis.push(...xXZWater2);
+      }
       let XZwater2 = {
         data: data.XZwater2,
         color: 'blue',
@@ -322,12 +330,16 @@ export default {
           matrixWaterRight.push([i, k, surfaceDataWaterRight[i][k]]);
         }
       }
+      let dataSplineChart = [firstChart, secondChart, XZwater]
+      if(typeOfModel === 3) {
+        dataSplineChart.push(XZwater2)
+      }
       this.createAnyChart('nuxk', matrix, 'NuxK');
       this.createAnyChart('nuxy', matrixy, 'NuxY');
       this.createAnyChart('nuWaterLeft', matrixWaterLeft, 'NuWaterLeft');
       this.createAnyChart('nuWaterRight', matrixWaterRight, 'NuWaterRight');
       console.log(xAxis.length, firstChart.length)
-      this.drawCategoryChart('XZsurface', {data: [firstChart, secondChart, XZwater, XZwater2], xAxis, title: 'XZsurface + Electrodes'})
+      this.drawCategoryChart('XZsurface', {data: dataSplineChart, xAxis, title: 'XZsurface + Electrodes'})
       this.drawCategoryChart('Roka', {data: [rokaChart], xAxis: xAxisRoka, title: 'Roka Chart'})
     }
   }
