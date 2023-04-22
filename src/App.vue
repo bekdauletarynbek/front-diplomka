@@ -185,8 +185,6 @@ export default {
             description: 'X'
           },
           categories: xAxisData,
-          useHTML: true,
-          crosshair: true,
         },
         legend: {
           enabled: true
@@ -195,15 +193,6 @@ export default {
           title: {
             text: 'Z'
           },
-        },
-        tooltip: {
-          pointFormatter: function() {
-            var point = this;
-            return '<span style="color:' + point.color + '">\u25CF</span> ' + point.series.name + ': <b>' + point.y  + '</b><br/>';
-          },
-          crosshair: true, 
-          shared: true,
-          useHTML: true,
         },
         plotOptions: {
           series: {
