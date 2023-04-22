@@ -303,7 +303,7 @@ export default {
         color: 'blue',
         name: 'Roka'
       }
-      let xAxisRoka = data.Roka.map(k=> k[0]);
+      let xAxisRoka = data.Roka.map(k=> k[0]).sort((a, b) => a - b);
       let surfaceData = data.nuxk;
       let matrix = [];
       for(let i = 0; i < surfaceData.length; i++) {
