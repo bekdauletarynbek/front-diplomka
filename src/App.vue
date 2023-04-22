@@ -246,22 +246,22 @@ export default {
       let xXZWater = [];
       for(let val of data.XZwater) {
         if(val[1])
-        xXZWater.push(Math.round(val[0]))
+        xXZWater.push(val[0])
       }
       let xXZWater2 = [];
       for(let val of data.XZwater2) {
         if(val[1])
-        xXZWater2.push(Math.round(val[0]))
+        xXZWater2.push(val[0])
       }
       let xXZSurface = [];
       for(let val of data.XZsurface) {
         if(val[1])
-          xXZSurface.push(Math.round(val[0]))
+          xXZSurface.push(val[0])
       }
       let xElectrodes = [];
       for(let val of data.electrodes) {
         if(val[1])
-          xElectrodes.push(Math.round(val[0]))
+          xElectrodes.push(val[0])
       }
       let xAxis = [...xXZSurface, ...xXZWater, ...xElectrodes];
       if(typeOfModel === 3) {
