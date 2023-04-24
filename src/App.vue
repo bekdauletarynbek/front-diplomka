@@ -171,8 +171,6 @@ export default {
   methods: {
     createColorScale() {
       // Create a color scale // Set the desired colors here
-    this.colorScale = anychart.scales.linearColor();
-    this.colorScale.colors(['#FF0000', '#FFFF00', '#00FF00']);
     },
     drawCategoryChart(id, {data, xAxisData, title}) {
       console.log(xAxisData)
@@ -220,6 +218,8 @@ export default {
       location.reload()
     },
     async createAnyChart(id, chartData, title) {
+    let colorScale = anychart.scales.linearColor();
+    colorScale.colors(['#FF0000', '#FFFF00', '#00FF00']);
       let chart = anychart.surface(chartData);
       chart.colorRange().enabled(true)
           .colorLineSize(20)
@@ -229,7 +229,7 @@ export default {
           .stroke('#000000')
           .position('inside');
 
-      chart.colorScale(this.colorScale);
+      chart.colorScale(colorScale);
       chart.height(500);
       chart.title(title);
       chart.container(id);
