@@ -163,13 +163,13 @@ export default {
   async mounted() {
     this.createColorScale();
     await this.getData();
-    this.colorScale = anychart.scales.linearColor();
-    this.colorScale.colors(['#FF0000', '#FFFF00', '#00FF00']);
     // Age categories
   },
   methods: {
     createColorScale() {
       // Create a color scale // Set the desired colors here
+    this.colorScale = anychart.scales.linearColor();
+    this.colorScale.colors(['#FF0000', '#FFFF00', '#00FF00']);
     },
     drawCategoryChart(id, {data, xAxisData, title}) {
       console.log(xAxisData)
