@@ -253,11 +253,7 @@ export default {
         },
 
         title: {
-            text: 'Highcharts Maps basic demo'
-        },
-
-        subtitle: {
-            text: 'Source map: <a href="http://code.highcharts.com/mapdata/countries/kz/kz-all.topo.json">Kazakhstan</a>'
+            text: 'Состояние дамб в Казахстане'
         },
 
         mapNavigation: {
