@@ -48,8 +48,6 @@ import anychart from 'anychart'
 import axios from 'axios'
 
 
-let colorScale = anychart.scales.linearColor();
-colorScale.colors(['#FF0000', '#FFFF00', '#00FF00']);
 export default {
   name: 'App',
   components: {
@@ -165,6 +163,8 @@ export default {
   async mounted() {
     this.createColorScale();
     await this.getData();
+    this.colorScale = anychart.scales.linearColor();
+    this.colorScale.colors(['#FF0000', '#FFFF00', '#00FF00']);
     // Age categories
   },
   methods: {
@@ -226,7 +226,7 @@ export default {
           .stroke('#000000')
           .position('inside');
 
-      chart.colorScale(colorScale);
+      chart.colorScale(this.colorScale);
       chart.height(500);
       chart.title(title);
       chart.container(id);
@@ -329,7 +329,9 @@ export default {
       this.createAnyChart('nuxk', matrix, 'NuxK');
       this.createAnyChart('nuxy', matrixy, 'NuxY');
       this.createAnyChart('nuWaterLeft', matrixWaterLeft, 'NuWaterLeft');
-      this.createAnyChart('nuWaterRight', matrixWaterRight, 'NuWaterRight');
+      if(typeOfModel === 3) {
+        this.createAnyChart('nuWaterRight', matrixWaterRight, 'NuWaterRight');
+      }
       console.log(xAxis.length, firstChart.length)
       this.drawCategoryChart('XZsurface', {data: dataSplineChart, xAxisData: xAxis, title: 'XZsurface + Electrodes'})
       this.drawCategoryChart('Roka', {data: [rokaChart], xAxisData: xAxisRoka, title: 'Roka Chart'})
