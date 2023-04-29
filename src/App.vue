@@ -171,7 +171,7 @@ export default {
     createColorScale() {
       // Create a color scale // Set the desired colors here
     },
-    drawCategoryChart(id, {data, xAxisData, title}) {
+    drawCategoryChart(id, {data, xAxisData, title, yTitle}) {
       console.log(xAxisData)
       Highcharts.chart(id, {
         chart: {
@@ -191,7 +191,7 @@ export default {
         },
         yAxis: {
           title: {
-            text: 'Z'
+            text: yTitle
           },
         },
         plotOptions: {
@@ -378,15 +378,15 @@ export default {
       if(typeOfModel === 3) {
         dataSplineChart.push(XZwater2);
       }
-      this.createAnyChart('nuxk', matrix, 'NuxK');
-      this.createAnyChart('nuxy', matrixy, 'NuxY');
-      this.createAnyChart('nuWaterLeft', matrixWaterLeft, 'NuWaterLeft');
+      this.createAnyChart('nuxk', matrix, 'Зарядтардың таралу жиіліктігі');
+      this.createAnyChart('nuxy', matrixy, 'Екінші ретті зарядтардың таралу жиілігі');
+      this.createAnyChart('nuWaterLeft', matrixWaterLeft, 'Сол жақ судың беті');
       if(typeOfModel === 3) {
         this.createAnyChart('nuWaterRight', matrixWaterRight, 'NuWaterRight');
       }
       console.log(xAxis.length, firstChart.length)
-      this.drawCategoryChart('XZsurface', {data: dataSplineChart, xAxisData: xAxis, title: 'XZsurface + Electrodes'})
-      this.drawCategoryChart('Roka', {data: [rokaChart], xAxisData: xAxisRoka, title: 'Roka Chart'})
+      this.drawCategoryChart('XZsurface', {data: dataSplineChart, xAxisData: xAxis, title: 'Дамбаның орналасу геометриясы', yTitle: 'Z, м'})
+      this.drawCategoryChart('Roka', {data: [rokaChart], xAxisData: xAxisRoka, title: 'Айқын кедергі қисықтары', yTitle: 'Z, м'})
       console.log(dataSplineChart)
     }
   }
