@@ -188,6 +188,17 @@ export default {
             description: 'X, m'
           },
           categories: xAxisData,
+          labels: {
+            formatter: function() {
+              var label = this.axis.defaultLabelFormatter.call(this);
+
+              // Use thousands separator for four-digit numbers too
+              if (/^[0-9]{4}$/.test(label)) {
+                  return Highcharts.numberFormat(this.value, 0);
+              }
+              return label;
+            }
+          }
         },
         legend: {
           enabled: true
@@ -395,10 +406,10 @@ export default {
       this.createAnyChart('nuxk', matrix, 'Зарядтардың таралу жиіліктігі');
       this.createAnyChart('nuxy', matrixy, 'Екінші ретті зарядтардың релъефтегі таралуы');
       if(typeOfModel === 2) {
-        this.createAnyChart('nuWaterLeft', matrixWaterLeft, 'Зарядтардың сол жақ бетіндегі таралуы');
+        this.createAnyChart('nuWaterLeft', matrixWaterLeft, 'Зарядтардың сол жақ жоғарғы бьефтегі таралуы');
       }
       if(typeOfModel === 3) {
-        this.createAnyChart('nuWaterRight', matrixWaterRight, 'Зарядтардың оң жақ бетіндегі таралуы');
+        this.createAnyChart('nuWaterRight', matrixWaterRight, 'Зарядтардың оң жақ төменгі бьефтегі таралуы');
       }
       console.log(xAxis.length, firstChart.length)
       this.drawCategoryChart('XZsurface', {data: dataSplineChart, xAxisData: xAxis, title: 'Дамбаның орналасу геометриясы', yTitle: 'Z, м'})
