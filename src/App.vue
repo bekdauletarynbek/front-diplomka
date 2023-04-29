@@ -372,9 +372,12 @@ export default {
           matrixWaterRight.push([i, k, surfaceDataWaterRight[i][k]]);
         }
       }
-      let dataSplineChart = [firstChart, secondChart, XZwater]
+      let dataSplineChart = [firstChart, secondChart]
+      if(typeOfModel !== 1) {
+        dataSplineChart.push(XZwater);
+      }
       if(typeOfModel === 3) {
-        dataSplineChart.push(XZwater2)
+        dataSplineChart.push(XZwater2);
       }
       this.createAnyChart('nuxk', matrix, 'NuxK');
       this.createAnyChart('nuxy', matrixy, 'NuxY');
