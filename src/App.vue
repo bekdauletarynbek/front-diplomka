@@ -235,6 +235,19 @@ export default {
       chart.height(500);
       chart.title(title);
       chart.container(id);
+      chart.export({
+        enabled: true,
+        allowExport: true,
+        exportMenu: {
+          items: [
+            {format: 'png'},
+            {format: 'jpg'},
+            {format: 'pdf'},
+            {format: 'svg'},
+            {format: 'csv'}
+          ]
+        }
+      });
       chart.draw();
     },
     async createMapChart() {
