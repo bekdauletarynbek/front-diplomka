@@ -329,11 +329,11 @@ export default {
       let firstChart = {
         data: data.XZsurface.sort((a, b) => a[0] - b[0]),
         color: 'red',
-        name: 'XZSurface'
+        name: 'Рельеф, x, m'
       };
       let secondChart = {
         data: data.electrodes.sort((a, b) => a[0] - b[0]),
-        name: 'Electrodes',
+        name: 'Электродтар, x, m',
         color: 'yellow'
       }
       let rokaChart = {
