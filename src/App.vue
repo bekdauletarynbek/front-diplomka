@@ -221,7 +221,7 @@ export default {
     },
     async createAnyChart(id, chartData, title) {
     let colorScale = anychart.scales.linearColor();
-    colorScale.colors(['#FF0000', '#FFFF00', '#00FF00']);
+    colorScale.colors(['#00FF00', '#FFFF00', '#FF0000' ]);
       let chart = anychart.surface(chartData);
       chart.colorRange().enabled(true)
           .colorLineSize(20)
@@ -231,6 +231,17 @@ export default {
           .stroke('#000000')
           .position('inside');
 
+          // configure the X-axis
+      var xAxis = chart.xAxis();
+      xAxis.title('X');
+
+      // configure the Y-axis
+      var yAxis = chart.yAxis();
+      yAxis.title('Y');
+
+      // configure the Z-axis
+      var zAxis = chart.zAxis();
+      zAxis.title('Z');
       chart.colorScale(colorScale);
       chart.height(500);
       chart.title(title);
