@@ -393,7 +393,7 @@ export default {
         dataSplineChart.push(XZwater2);
       }
       this.createAnyChart('nuxk', matrix, 'Зарядтардың таралу жиіліктігі');
-      this.createAnyChart('nuxy', matrixy, 'Екінші ретті зарядтардың таралу жиілігі');
+      this.createAnyChart('nuxy', matrixy, 'Екінші ретті зарядтардың релъефтегі таралуы');
       if(typeOfModel === 2) {
         this.createAnyChart('nuWaterLeft', matrixWaterLeft, 'Сол жақ судың беті');
       }
