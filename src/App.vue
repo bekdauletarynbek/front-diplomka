@@ -25,7 +25,6 @@
       <div id="nuxy"></div>
       <div id="nuWaterLeft"></div>
       <div id="nuWaterRight"></div>
-      <div id="map"></div>
     </div>
   </div>
   <el-dialog title="История вычислении" v-model="show" top="20px">
@@ -165,7 +164,7 @@ export default {
   async mounted() {
     this.createColorScale();
     await this.getData();
-    await this.createMapChart();
+    // await this.createMapChart();
     // Age categories
   },
   methods: {
