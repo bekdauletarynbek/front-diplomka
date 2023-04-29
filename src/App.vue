@@ -333,12 +333,12 @@ export default {
       let XZwater2 = {
         data: data.XZwater2.sort((a, b) => a[0] - b[0]),
         color: 'blue',
-        name: 'XZwater2'
+        name: 'Төменгі бьеф'
       };
       let XZwater = {
         data: data.XZwater.sort((a, b) => a[0] - b[0]),
         color: 'blue',
-        name: 'XZwater'
+        name: 'Жоғарғы бьеф'
       };
       let firstChart = {
         data: data.XZsurface.sort((a, b) => a[0] - b[0]),
