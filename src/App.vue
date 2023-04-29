@@ -399,7 +399,7 @@ export default {
       }
       this.createAnyChart('nuxk', matrix, 'Зарядтардың таралу жиіліктігі');
       this.createAnyChart('nuxy', matrixy, 'Екінші ретті зарядтардың релъефтегі таралуы');
-      if(typeOfModel === 2) {
+      if([2, 3].includes(typeOfModel)) {
         this.createAnyChart('nuWaterLeft', matrixWaterLeft, 'Зарядтардың сол жақ жоғарғы бьефтегі таралуы');
       }
       if(typeOfModel === 3) {
