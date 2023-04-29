@@ -37,14 +37,13 @@
       <el-form-item v-for="inputs in inputLabels[form.typeOfModel]" :key="inputs.title" :label="inputs.title">
         <el-input v-model="form[inputs.key]"></el-input>
       </el-form-item>
-      <el-button @click="calculateResult" type="success" round size="small">Вычислить</el-button>
+      <el-button @click="calculateResult" type="success" round size="small">Есептеу</el-button>
     </el-form>
   </el-dialog>
 </template>
 
 <script>
 import Highcharts from 'highcharts';
-import Highmaps from 'highcharts/highmaps';
 import enableExporting from 'highcharts/modules/exporting';
 import anychart from 'anychart';
 import axios from 'axios';
@@ -157,23 +156,14 @@ export default {
             key: 'heightOfWaterAtRightSide'
           }
         ],
-        5: [],
-        6: [],
-        7: []
       },
       colorScale: null
     }
   },
   async mounted() {
-    this.createColorScale();
     await this.getData();
-    // await this.createMapChart();
-    // Age categories
   },
   methods: {
-    createColorScale() {
-      // Create a color scale // Set the desired colors here
-    },
     drawCategoryChart(id, {data, xAxisData, title, yTitle}) {
       console.log(xAxisData)
       Highcharts.chart(id, {
@@ -218,10 +208,9 @@ export default {
       });
     },
     async calculateResult() {
-      let data = await axios.post('/api/calculate', {
+      await axios.post('/api/calculate', {
         ...this.form
       });
-      console.log(data);
       location.reload()
     },
     async createAnyChart(id, chartData, title) {
@@ -236,15 +225,12 @@ export default {
           .stroke('#000000')
           .position('inside');
 
-          // configure the X-axis
       var xAxis = chart.xAxis();
       xAxis.title('Y');
 
-      // configure the Y-axis
       var yAxis = chart.yAxis();
       yAxis.title('X');
 
-      // configure the Z-axis
       var zAxis = chart.zAxis();
       zAxis.title('q(x, y)');
       chart.colorScale(colorScale);
@@ -252,53 +238,6 @@ export default {
       chart.title(title);
       chart.container(id);
       chart.draw();
-    },
-    async createMapChart() {
-      let topology = await fetch(
-        'https://code.highcharts.com/mapdata/countries/kz/kz-all.topo.json'
-    ).then(response => response.json());
-    const data = [
-        ['kz-5085', 10], ['kz-qo', 11], ['kz-ac', 12], ['kz-as', 13],
-        ['kz-qs', 14], ['kz-nk', 15], ['kz-pa', 16], ['kz-am', 17],
-        ['kz-zm', 18], ['kz-ek', 19], ['kz-ar', 20], ['kz-mg', 21],
-        ['kz-aa', 22], ['kz-at', 23], ['kz-wk', 24], ['kz-sk', 25],
-        ['kz-qg', 26]
-    ];
-
-      Highmaps.mapChart('map', {
-        chart: {
-            map: topology
-        },
-
-        title: {
-            text: 'Состояние дамб в Казахстане'
-        },
-
-        mapNavigation: {
-            enabled: true,
-            buttonOptions: {
-                verticalAlign: 'bottom'
-            }
-        },
-
-        colorAxis: {
-            min: 0
-        },
-
-        series: [{
-            data: data,
-            name: 'Random data',
-            states: {
-                hover: {
-                    color: '#BADA55'
-                }
-            },
-            dataLabels: {
-                enabled: true,
-                format: '{point.name}'
-            }
-        }]
-    });
     },
     async getData() {
       this.loading = true;
