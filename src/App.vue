@@ -333,12 +333,12 @@ export default {
       let XZwater2 = {
         data: data.XZwater2.sort((a, b) => a[0] - b[0]),
         color: 'blue',
-        name: 'Төменгі бьеф'
+        name: 'Төменгі бьеф (x, m)'
       };
       let XZwater = {
         data: data.XZwater.sort((a, b) => a[0] - b[0]),
         color: 'blue',
-        name: 'Жоғарғы бьеф'
+        name: 'Жоғарғы бьеф (x, m)'
       };
       let firstChart = {
         data: data.XZsurface.sort((a, b) => a[0] - b[0]),
@@ -395,10 +395,10 @@ export default {
       this.createAnyChart('nuxk', matrix, 'Зарядтардың таралу жиіліктігі');
       this.createAnyChart('nuxy', matrixy, 'Екінші ретті зарядтардың релъефтегі таралуы');
       if(typeOfModel === 2) {
-        this.createAnyChart('nuWaterLeft', matrixWaterLeft, 'Сол жақ судың беті');
+        this.createAnyChart('nuWaterLeft', matrixWaterLeft, 'Зарядтардың сол жақ бетіндегі таралуы');
       }
       if(typeOfModel === 3) {
-        this.createAnyChart('nuWaterRight', matrixWaterRight, 'NuWaterRight');
+        this.createAnyChart('nuWaterRight', matrixWaterRight, 'Зарядтардың оң жақ бетіндегі таралуы');
       }
       console.log(xAxis.length, firstChart.length)
       this.drawCategoryChart('XZsurface', {data: dataSplineChart, xAxisData: xAxis, title: 'Дамбаның орналасу геометриясы', yTitle: 'Z, м'})
