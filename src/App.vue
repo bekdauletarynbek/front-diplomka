@@ -45,8 +45,11 @@
 <script>
 import Highcharts from 'highcharts';
 import Highmaps from 'highcharts/highmaps';
+import enableExporting from 'highcharts/modules/exporting';
 import anychart from 'anychart';
 import axios from 'axios';
+
+enableExporting(Highcharts);
 
 
 export default {
