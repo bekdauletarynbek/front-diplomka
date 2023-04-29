@@ -46,7 +46,7 @@
 import Highcharts from 'highcharts';
 import Highmaps from 'highcharts/highmaps';
 import enableExporting from 'highcharts/modules/exporting';
-// import anychart from 'anychart';
+import anychart from 'anychart';
 import axios from 'axios';
 
 enableExporting(Highcharts);
@@ -220,10 +220,8 @@ export default {
       location.reload()
     },
     async createAnyChart(id, chartData, title) {
-      // eslint-disable-next-line
     let colorScale = anychart.scales.linearColor();
     colorScale.colors(['#FF0000', '#FFFF00', '#00FF00']);
-    // eslint-disable-next-line
       let chart = anychart.surface(chartData);
       chart.colorRange().enabled(true)
           .colorLineSize(20)
@@ -237,19 +235,6 @@ export default {
       chart.height(500);
       chart.title(title);
       chart.container(id);
-      chart.export({
-        enabled: true,
-        allowExport: true,
-        exportMenu: {
-          items: [
-            {format: 'png'},
-            {format: 'jpg'},
-            {format: 'pdf'},
-            {format: 'svg'},
-            {format: 'csv'}
-          ]
-        }
-      });
       chart.draw();
     },
     async createMapChart() {
