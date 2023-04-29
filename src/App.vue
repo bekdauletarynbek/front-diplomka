@@ -182,7 +182,7 @@ export default {
         },
         xAxis: {
           accessibility: {
-            description: 'X'
+            description: 'X, m'
           },
           categories: xAxisData,
         },
@@ -380,13 +380,15 @@ export default {
       }
       this.createAnyChart('nuxk', matrix, 'Зарядтардың таралу жиіліктігі');
       this.createAnyChart('nuxy', matrixy, 'Екінші ретті зарядтардың таралу жиілігі');
-      this.createAnyChart('nuWaterLeft', matrixWaterLeft, 'Сол жақ судың беті');
+      if(typeOfModel === 2) {
+        this.createAnyChart('nuWaterLeft', matrixWaterLeft, 'Сол жақ судың беті');
+      }
       if(typeOfModel === 3) {
         this.createAnyChart('nuWaterRight', matrixWaterRight, 'NuWaterRight');
       }
       console.log(xAxis.length, firstChart.length)
       this.drawCategoryChart('XZsurface', {data: dataSplineChart, xAxisData: xAxis, title: 'Дамбаның орналасу геометриясы', yTitle: 'Z, м'})
-      this.drawCategoryChart('Roka', {data: [rokaChart], xAxisData: xAxisRoka, title: 'Айқын кедергі қисықтары', yTitle: 'Z, м'})
+      this.drawCategoryChart('Roka', {data: [rokaChart], xAxisData: xAxisRoka, title: 'Айқын кедергі қисықтары', yTitle: 'Y, р * Ом°м'})
       console.log(dataSplineChart)
     }
   }
