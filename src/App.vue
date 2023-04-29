@@ -233,15 +233,15 @@ export default {
 
           // configure the X-axis
       var xAxis = chart.xAxis();
-      xAxis.title('X');
+      xAxis.title('Y');
 
       // configure the Y-axis
       var yAxis = chart.yAxis();
-      yAxis.title('Y');
+      yAxis.title('X');
 
       // configure the Z-axis
       var zAxis = chart.zAxis();
-      zAxis.title('Z');
+      zAxis.title('q(x, y)');
       chart.colorScale(colorScale);
       chart.height(500);
       chart.title(title);
