@@ -358,12 +358,7 @@ export default {
       let rokaChart = {
         data: data.Roka.sort((a, b) => a[0] - b[0]),
         color: 'blue',
-        name: 'Айқын кедергі қисығы r1 = 50, r2 = 10 (x, m)'
-      }
-      let rokaChart2 = {
-        data: data.Roka1050.sort((a, b) => a[0] - b[0]),
-        color: 'red',
-        name: 'Айқын кедергі қисығы r1 = 10, r2 = 50 (x, m)'
+        name: 'Айқын кедергі қисығы (x, m)'
       }
       let xAxisRoka = data.Roka.map(k=> k[0]).sort((a, b) => a - b);
       let surfaceData = data.nuxk;
@@ -412,7 +407,7 @@ export default {
       }
       console.log(xAxis.length, firstChart.length)
       this.drawCategoryChart('XZsurface', {data: dataSplineChart, xAxisData: xAxis, title: 'Дамбаның орналасу геометриясы', yTitle: 'Z, м'})
-      this.drawCategoryChart('Roka', {data: [rokaChart, rokaChart2], xAxisData: xAxisRoka, title: 'Айқын кедергі қисықтары', yTitle: 'ρ, Ом⋅м'})
+      this.drawCategoryChart('Roka', {data: [rokaChart], xAxisData: xAxisRoka, title: 'Айқын кедергі қисықтары', yTitle: 'ρ, Ом⋅м'})
       console.log(dataSplineChart)
     }
   }
